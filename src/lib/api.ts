@@ -5,7 +5,23 @@ export const ENDPOINTS = {
   reviewQueue: `${BASE}/API%20-%20Manual%20Review%20Queue`,
   approve: `${BASE}/manual-approve`,
   reject: `${BASE}/manual-reject`,
+  executionLog: `${BASE}/execution-log`,
 };
+
+export interface ExecutionLog {
+  execution_id?: string;
+  sender_email?: string;
+  current_stage?: string;
+  workflow_status?: string;
+  created_at?: string;
+  row_number?: number;
+  [k: string]: unknown;
+}
+
+export async function fetchExecutionLog(): Promise<ExecutionLog[]> {
+  const d = await jsonFetch<unknown>(ENDPOINTS.executionLog);
+  return normalizeList(d) as ExecutionLog[];
+}
 
 async function jsonFetch<T>(url: string, init?: RequestInit): Promise<T> {
   const res = await fetch(url, init);

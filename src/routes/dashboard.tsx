@@ -6,6 +6,7 @@ import { Search, FileText, CheckCircle2, Clock, ThumbsUp, ThumbsDown, DollarSign
 import { ProtectedLayout } from "@/components/ProtectedLayout";
 import { StatusBadge } from "@/components/StatusBadge";
 import { InvoiceDetailModal } from "@/components/InvoiceDetailModal";
+import { LiveExecutionPanel } from "@/components/LiveExecutionPanel";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -114,6 +115,10 @@ function DashboardPage() {
         <KpiCard icon={ThumbsUp} label="Manual Approved" value={stats.mApproved} tone="info" />
         <KpiCard icon={ThumbsDown} label="Manual Rejected" value={stats.mRejected} tone="destructive" />
         <KpiCard icon={DollarSign} label="Total Amount" value={formatCurrency(stats.amount, stats.currency)} tone="primary" />
+      </div>
+
+      <div className="mb-6">
+        <LiveExecutionPanel />
       </div>
 
       <div className="rounded-xl border border-border bg-card shadow-sm">
